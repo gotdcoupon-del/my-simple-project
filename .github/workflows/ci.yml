@@ -1,0 +1,30 @@
+name: CI Pipeline
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v3
+      
+    - name: Run a simple test
+      run: |
+        echo "Running CI pipeline..."
+        echo "Repository: ${{ github.repository }}"
+        echo "Branch: ${{ github.ref }}"
+        echo "Commit: ${{ github.sha }}"
+        
+    - name: Verify files
+      run: |
+        echo "Listing repository files:"
+        ls -la
+        
+    - name: Success message
+      run: echo "✅ CI pipeline completed successfully!"
